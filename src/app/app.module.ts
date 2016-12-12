@@ -1,20 +1,43 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
+import { RouterModule } from '@angular/router';
+import { AUTH_PROVIDERS, AuthConfig, AuthHttp } from 'angular2-jwt';
 
 import { AppComponent } from './app.component';
+import { IndexComponent } from './index/index.component';
+
+import { AuthService } from './auth.service';
+
+import { routes } from './app.routes';
+
+export function getAuthHttp(http) {
+  return new AuthHttp(new AuthConfig({
+    headerPrefix: 'TOKA',
+    noJwtError: true,
+    globalHeaders: [{'Accept': 'application/json'}],
+    tokenGetter: (() => localStorage.getItem('id_token')),
+  }), http);
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'de-DE'},
+    AUTH_PROVIDERS,
+    AuthService,
+    {provide: AuthHttp, useFactory: getAuthHttp, deps: [Http]}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
