@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 
 import { AuthService } from './auth.service';
 
@@ -10,15 +10,29 @@ import { AuthService } from './auth.service';
 export class AppComponent {
   title = 'app works!';
 
-  constructor(public auth: AuthService) { }
+  constructor(public auth: AuthService, private cd: ChangeDetectorRef) {
+    this.auth.jwtExpiration.subscribe(
+      () => {
+        console.log('change');
+        this.cd.detectChanges();
+      }
+    );
+  }
 
   login() {
     this.auth.post('/auth/login', {
       username: 'fank12342',
       password: 'gameserver'
     }).subscribe(
-      (res) => console.log(res),
+      (res) => {
+        console.log(res.text());
+        this.auth.setJWT(res.text());
+      },
       (err) => console.error(err)
     );
+  }
+
+  logout() {
+    this.auth.setJWT('');
   }
 }

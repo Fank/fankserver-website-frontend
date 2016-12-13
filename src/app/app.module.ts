@@ -11,6 +11,8 @@ import { IndexComponent } from './index/index.component';
 import { AuthService } from './auth.service';
 
 import { routes } from './app.routes';
+import { ContactsComponent } from './header/contacts/contacts.component';
+import { NavbarComponent } from './header/navbar/navbar.component';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -24,7 +26,9 @@ export function getAuthHttp(http) {
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent
+    IndexComponent,
+    ContactsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
