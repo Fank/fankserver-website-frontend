@@ -1,0 +1,81 @@
+md-sidenav-layout {
+  background: rgba(0,0,0,0.03);
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.app-content {
+  margin: 20px;
+}
+
+/*this rule can be activated for visual nesting*/
+/*:host >>> navigationitem > md-nav-list.level-2 > md-list-item > div::before {
+	content: '-'
+}*/
+
+.no-select, .no-select * {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.banner {
+  align-items: center;
+  background-color: #3f51b5;
+  color: rgba(255, 255, 255, 0.87);
+  display: flex;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  height: 64px;
+  padding-left: 20px;
+}
+
+:host >>> * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:host >>> .secondary {
+  color: rgba(0,0,0,0.54);
+}
+
+:host >>> .faded {
+  color: rgba(0,0,0,0.125);
+}
+
+:host >>> .float-right {
+  float: right;
+}
+
+:host >>> .md-tab-body.md-tab-active {
+  padding: 14px;
+}
+
+:host >>> md-card.notification {
+  padding: 8px;
+  font-size: 18px;
+  text-align: center;
+  color: rgba(255,255,255, 0.84);
+}
+
+:host >>> md-card.success {
+  background-color: #59B75C;
+}
+
+:host >>> md-card.info {
+  background-color: #03A9F4;
+}
+
+:host >>> md-card.warning {
+  background-color: #FF5722;
+}
+
+:host >>> md-card.danger {
+  background-color: #F44336;
+}

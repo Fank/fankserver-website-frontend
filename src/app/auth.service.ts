@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
-import { tokenNotExpired, AuthHttp } from 'angular2-jwt';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Response} from '@angular/http';
+import {tokenNotExpired, AuthHttp, JwtHelper} from 'angular2-jwt';
+import {Observable, Subject} from 'rxjs';
+
+const jwtHelper: JwtHelper = new JwtHelper();
 
 @Injectable()
 export class AuthService {
+  public jwtExpiration: Subject<void> = new Subject<void>();
 
   constructor(private authHttp: AuthHttp) { }
 
@@ -13,7 +16,17 @@ export class AuthService {
   }
 
   setJWT(jwt: string) {
-    localStorage.setItem('id_token', jwt);
+    if (jwt) {
+      localStorage.setItem('id_token', jwt);
+      let expireDate = jwtHelper.getTokenExpirationDate(jwt);
+      setTimeout(
+        () => this.jwtExpiration.next(),
+        (expireDate.valueOf() - (new Date().valueOf()) + 2000)
+      );
+    }
+    else {
+      localStorage.removeItem('id_token');
+    }
   }
 
   // get(url: string, data: any) {

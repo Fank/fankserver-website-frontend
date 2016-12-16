@@ -1,16 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule, Http } from '@angular/http';
-import { RouterModule } from '@angular/router';
-import { AUTH_PROVIDERS, AuthConfig, AuthHttp } from 'angular2-jwt';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule, LOCALE_ID} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpModule, Http} from '@angular/http';
+import {RouterModule} from '@angular/router';
+import {MaterialModule} from "@angular/material";
+import {AUTH_PROVIDERS, AuthConfig, AuthHttp} from 'angular2-jwt';
 
-import { AppComponent } from './app.component';
-import { IndexComponent } from './index/index.component';
+import {AppComponent} from './app.component';
+import {IndexComponent} from './index/index.component';
 
-import { AuthService } from './auth.service';
+import {AuthService} from './auth.service';
 
-import { routes } from './app.routes';
+import {routes} from './app.routes';
+
+import 'hammerjs';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -30,7 +33,8 @@ export function getAuthHttp(http) {
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MaterialModule.forRoot()
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'de-DE'},

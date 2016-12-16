@@ -1,6 +1,38 @@
-<h1>
-  {{title}}
-</h1>
-<button id="login" *ngIf="!auth.loggedIn()" (click)="login()">Log In</button>
-<button id="logout" *ngIf="auth.loggedIn()">Log Out</button>
-<router-outlet></router-outlet>
+<md-sidenav-layout fullscreen>
+  <md-sidenav class="app-sidenav no-select" #sidenav>
+    <button md-icon-button (click)="sidenav.close()">
+      <md-icon>menu</md-icon>
+    </button>
+  </md-sidenav>
+
+  <md-toolbar color="primary" class="no-select">
+    <button md-icon-button (click)="sidenav.open()">
+      <md-icon>menu</md-icon>
+    </button>
+    <span>Temel.me</span>
+
+    <span class="fill-remaining-space"></span>
+
+    <span class="overflow-hidden">
+			<button md-icon-button [md-menu-trigger-for]="notificationMenu">
+				<md-icon>notifications_none</md-icon>
+			</button>
+			<md-menu x-position="before" #notificationMenu="mdMenu">
+				<button md-menu-item disabled>No Notifications</button>
+			</md-menu>
+
+			<button md-icon-button [md-menu-trigger-for]="settingsMenu">
+				<md-icon>settings_notifications</md-icon>
+			</button>
+			<md-menu x-position="before" #settingsMenu="mdMenu">
+				<button md-menu-item>Foo</button>
+				<button md-menu-item>Bar</button>
+				<button md-menu-item disabled>Baz</button>
+			</md-menu>
+		</span>
+  </md-toolbar>
+
+  <div class="app-content">
+    <router-outlet></router-outlet>
+  </div>
+</md-sidenav-layout>
