@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Navbar issues */
+.nk-navbar .nk-nav ul.dropdown {
+  transition: display 0s, opacity 0.5s linear;
+}
+.nk-navbar .nk-nav .nk-drop-item:hover > .dropdown {
+  display: block;
+  opacity: 1;
+}
