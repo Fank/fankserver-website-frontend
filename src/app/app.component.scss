@@ -1,6 +1,7 @@
 @import "../variables";
 $header-top-height: 2em;
 $header-navbar-height: 4em;
+$header-color: lightgray;
 
 :host .fs-header {
   // header styles
@@ -10,12 +11,32 @@ $header-navbar-height: 4em;
     background-color: $color-a;
 
     md-icon {
-      color: lightgray;
+      color: $header-color;
     }
   }
   &-navbar {
     display: block;
     height: $header-navbar-height;
     background-color: $color-b;
+
+    h1 a {
+      color: $header-color;
+    }
+
+    ul {
+      list-style: none;
+
+      li {
+        padding: 0 10px;
+        a {
+          color: $header-color;
+        }
+      }
+    }
   }
 }
+/*
+:host > article {
+  color: $header-color;
+}
+*/

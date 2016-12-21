@@ -8,7 +8,6 @@ import {AuthService} from './auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app works!';
 
   constructor(public auth: AuthService, private cd: ChangeDetectorRef) {
     this.auth.jwtExpiration.subscribe(
@@ -19,19 +18,7 @@ export class AppComponent {
     );
   }
 
-  login() {
-    this.auth.post('/auth/login', {
-      username: 'fank12342',
-      password: 'gameserver'
-    }).subscribe(
-      (res) => {
-        this.auth.setJWT(res.text());
-      },
-      (err) => console.error(err)
-    );
-  }
-
-  logout() {
-    this.auth.setJWT('');
-  }
+  // logout() {
+  //   this.auth.setJWT('');
+  // }
 }

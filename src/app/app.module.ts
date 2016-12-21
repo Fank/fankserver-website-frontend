@@ -1,16 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule, Http } from '@angular/http';
-import { RouterModule } from '@angular/router';
-import { MaterialModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { AUTH_PROVIDERS, AuthConfig, AuthHttp } from 'angular2-jwt';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule, LOCALE_ID} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HttpModule, Http} from '@angular/http';
+import {RouterModule} from '@angular/router';
+import {MaterialModule} from '@angular/material';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {AUTH_PROVIDERS, AuthConfig, AuthHttp} from 'angular2-jwt';
 
-import { AppComponent } from './app.component';
-import { IndexComponent } from './index/index.component';
-import { AuthService } from './auth.service';
-import { routes } from './app.routes';
+import {AppComponent} from './app.component';
+import {IndexComponent} from './index/index.component';
+import {AuthService} from './auth.service';
+import {routes} from './app.routes';
+import {LoginComponent} from './login/login.component';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -24,11 +25,12 @@ export function getAuthHttp(http) {
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent
+    IndexComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
     MaterialModule.forRoot(),

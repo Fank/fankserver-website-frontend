@@ -1,7 +1,7 @@
 <header>
 
   <div class="fs-header-top" fxLayoutAlign="space-around">
-    <div class="container" fxFlex="75%" fxLayoutAlign="space-between">
+    <div fxFlex="60%" fxLayoutAlign="space-between">
       <div class="fs-header-left" fxFlex="grow" fxLayoutAlign="start center">
         <md-icon>home</md-icon>
       </div>
@@ -11,40 +11,30 @@
     </div>
   </div>
 
-  <nav class="fs-header-navbar">
-    <div class="container">
-      <h1>Navigation</h1>
-      <ul>
+  <nav class="fs-header-navbar" fxLayoutAlign="space-around">
+    <div fxFlex="60%" fxLayoutAlign="space-between">
+      <h1 fxFlex="grow" fxLayoutAlign="start center"><a routerLink="/" routerLinkActive="active">Navigation</a></h1>
+      <ul fxFlex="grow" fxLayoutAlign="end center">
         <li><a href="articles.html">Index of all articles</a></li>
         <li><a href="today.html">Things sheeple need to wake up for today</a></li>
-        <li><a href="successes.html">Sheeple we have managed to wake</a></li>
+        <li *ngIf="!auth.loggedIn()"><a routerLink="/login" routerLinkActive="active">Login</a></li>
+        <li *ngIf="auth.loggedIn()"><a routerLink="/login" routerLinkActive="active">Logout</a></li>
       </ul>
     </div>
   </nav>
 
 </header>
-<article>
-  <router-outlet></router-outlet>
-</article>
-<footer>
-  <p>Copyright © 2006 The Example Company</p>
-  <p><a href="about.html">About</a> -
-    <a href="policy.html">Privacy Policy</a> -
-    <a href="contact.html">Contact Us</a></p>
-</footer>
-
-<header class="fs-header">
-  <div class="fs-header-top">
-    <div class="fs-header-left">
-      <md-icon>home</md-icon>
-    </div>
-    <div class="fs-header-right"></div>
+<article fxLayoutAlign="space-around">
+  <div fxFlex="60%">
+    <router-outlet></router-outlet>
   </div>
-  <div class="fs-header-navbar"></div>
-</header>
-<h1>
-  {{title}}
-</h1>
-<button id="login" *ngIf="!auth.loggedIn()" (click)="login()">Log In</button>
-<button id="logout" *ngIf="auth.loggedIn()" (click)="logout()">Log Out</button>
+</article>
+<footer fxLayoutAlign="space-around">
+  <div fxFlex="60%" fxLayoutAlign="space-between">
+    <p fxFlex="grow" fxLayoutAlign="start center">Copyright © 2006 The Example Company</p>
+    <p fxFlex="grow" fxLayoutAlign="end center"><a href="about.html">About</a> -
+      <a href="policy.html">Privacy Policy</a> -
+      <a href="contact.html">Contact Us</a></p>
+  </div>
+</footer>
 
