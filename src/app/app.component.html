@@ -1,6 +1,50 @@
+<header>
+
+  <div class="fs-header-top" fxLayoutAlign="space-around">
+    <div class="container" fxFlex="75%" fxLayoutAlign="space-between">
+      <div class="fs-header-left" fxFlex="grow" fxLayoutAlign="start center">
+        <md-icon>home</md-icon>
+      </div>
+      <div class="fs-header-right" fxFlex="grow" fxLayoutAlign="end center">
+        <md-icon>home</md-icon>
+      </div>
+    </div>
+  </div>
+
+  <nav class="fs-header-navbar">
+    <div class="container">
+      <h1>Navigation</h1>
+      <ul>
+        <li><a href="articles.html">Index of all articles</a></li>
+        <li><a href="today.html">Things sheeple need to wake up for today</a></li>
+        <li><a href="successes.html">Sheeple we have managed to wake</a></li>
+      </ul>
+    </div>
+  </nav>
+
+</header>
+<article>
+  <router-outlet></router-outlet>
+</article>
+<footer>
+  <p>Copyright © 2006 The Example Company</p>
+  <p><a href="about.html">About</a> -
+    <a href="policy.html">Privacy Policy</a> -
+    <a href="contact.html">Contact Us</a></p>
+</footer>
+
+<header class="fs-header">
+  <div class="fs-header-top">
+    <div class="fs-header-left">
+      <md-icon>home</md-icon>
+    </div>
+    <div class="fs-header-right"></div>
+  </div>
+  <div class="fs-header-navbar"></div>
+</header>
 <h1>
   {{title}}
 </h1>
 <button id="login" *ngIf="!auth.loggedIn()" (click)="login()">Log In</button>
-<button id="logout" *ngIf="auth.loggedIn()">Log Out</button>
-<router-outlet></router-outlet>
+<button id="logout" *ngIf="auth.loggedIn()" (click)="logout()">Log Out</button>
+

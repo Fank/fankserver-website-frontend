@@ -3,13 +3,13 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AUTH_PROVIDERS, AuthConfig, AuthHttp } from 'angular2-jwt';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
-
 import { AuthService } from './auth.service';
-
 import { routes } from './app.routes';
 
 export function getAuthHttp(http) {
@@ -30,7 +30,9 @@ export function getAuthHttp(http) {
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MaterialModule.forRoot(),
+    FlexLayoutModule.forRoot()
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'de-DE'},

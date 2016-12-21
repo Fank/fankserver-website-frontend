@@ -1,0 +1,21 @@
+@import "../variables";
+$header-top-height: 2em;
+$header-navbar-height: 4em;
+
+:host .fs-header {
+  // header styles
+  &-top {
+    display: block;
+    height: $header-top-height;
+    background-color: $color-a;
+
+    md-icon {
+      color: lightgray;
+    }
+  }
+  &-navbar {
+    display: block;
+    height: $header-navbar-height;
+    background-color: $color-b;
+  }
+}
