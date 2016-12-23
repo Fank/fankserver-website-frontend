@@ -1,9 +1,9 @@
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 import {NgModule, LOCALE_ID} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
-import {MaterialModule} from '@angular/material';
+import {MaterialModule, MdIconRegistry} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AuthModule} from 'angular2-jwt';
 
@@ -43,4 +43,9 @@ export function asd() {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(mdIconRegistry: MdIconRegistry, ds: DomSanitizer) {
+    mdIconRegistry.registerFontClassAlias('fontawesome', 'fa');
+    mdIconRegistry.addSvgIcon('rsi', ds.bypassSecurityTrustResourceUrl('../assets/roberts_space_industries.svg'));
+  }
+}
