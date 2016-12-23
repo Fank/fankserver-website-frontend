@@ -46,6 +46,6 @@ export function asd() {
 export class AppModule {
   constructor(mdIconRegistry: MdIconRegistry, ds: DomSanitizer) {
     mdIconRegistry.registerFontClassAlias('fontawesome', 'fa');
-    mdIconRegistry.addSvgIcon('rsi', ds.bypassSecurityTrustResourceUrl('../assets/roberts_space_industries.svg'));
+    mdIconRegistry.addSvgIcon('rsi', ds.bypassSecurityTrustResourceUrl('./assets/roberts_space_industries.svg'));
   }
 }
