@@ -1,36 +1,26 @@
 @import "../variables";
+$color: lightgray;
 $header-top-height: 2em;
-$header-navbar-height: 4em;
-$header-color: lightgray;
+$header-navbar-height: 5em;
+$footer-height: 2em;
 
-:host .fs-header {
+:host header .fs-header {
   // header styles
   &-top {
-    display: block;
     height: $header-top-height;
     background-color: $color-a;
-
-    md-icon {
-      color: $header-color;
-    }
+    color: $color;
   }
   &-navbar {
-    display: block;
     height: $header-navbar-height;
     background-color: $color-b;
-
-    h1 a {
-      color: $header-color;
-    }
+    color: $color;
 
     ul {
       list-style: none;
 
       li {
         padding: 0 10px;
-        a {
-          color: $header-color;
-        }
       }
     }
   }
@@ -40,3 +30,9 @@ $header-color: lightgray;
   color: $header-color;
 }
 */
+
+:host footer {
+  height: $footer-height;
+  background-color: $color-a;
+  color: $color;
+}

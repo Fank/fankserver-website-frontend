@@ -13,7 +13,11 @@
 
   <nav class="fs-header-navbar" fxLayoutAlign="space-around">
     <div fxFlex="60%" fxLayoutAlign="space-between">
-      <h1 fxFlex="grow" fxLayoutAlign="start center"><a routerLink="/" routerLinkActive="active">Navigation</a></h1>
+      <div fxFlex="grow" fxLayoutAlign="start center">
+        <a routerLink="/" routerLinkActive="active">
+          <img src="../assets/logo.png" alt="Fankserver">
+        </a>
+      </div>
       <ul fxFlex="grow" fxLayoutAlign="end center">
         <li><a href="articles.html">Index of all articles</a></li>
         <li><a href="today.html">Things sheeple need to wake up for today</a></li>
@@ -24,11 +28,11 @@
   </nav>
 
 </header>
-<article fxLayoutAlign="space-around">
+<main fxFlex="grow" fxLayoutAlign="space-around">
   <div fxFlex="60%">
     <router-outlet></router-outlet>
   </div>
-</article>
+</main>
 <footer fxLayoutAlign="space-around">
   <div fxFlex="60%" fxLayoutAlign="space-between">
     <p fxFlex="grow" fxLayoutAlign="start center">Copyright © 2006 The Example Company</p>
