@@ -11,6 +11,10 @@ export class AuthService {
 
   constructor(private authHttp: AuthHttp) { }
 
+  get token() {
+    return jwtHelper.decodeToken(localStorage.getItem('id_token'));
+  }
+
   loggedIn() {
     return tokenNotExpired();
   }

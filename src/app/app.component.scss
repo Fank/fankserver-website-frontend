@@ -26,8 +26,13 @@ $footer-height: 2em;
       li {
         padding: 0 10px;
 
-        a:hover {
-          color: $color-dark-hover;
+        a {
+          &.active {
+            color: $color-active;
+          }
+          &:hover {
+            color: $color-dark-hover;
+          }
         }
       }
     }

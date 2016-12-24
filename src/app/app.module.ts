@@ -12,6 +12,8 @@ import {IndexComponent} from './index/index.component';
 import {AuthService} from './auth.service';
 import {routes} from './app.routes';
 import {LoginComponent} from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export function asd() {
   return localStorage.getItem('id_token');
@@ -21,7 +23,9 @@ export function asd() {
   declarations: [
     AppComponent,
     IndexComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

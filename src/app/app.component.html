@@ -3,7 +3,11 @@
   <div class="fs-header-top" fxLayoutAlign="space-around">
     <div fxFlex="60%" fxLayoutAlign="space-between">
       <div class="fs-header-left" fxFlex="grow" fxLayoutAlign="start center">
-        <md-icon>home</md-icon>
+        <md-icon>account_box</md-icon>
+        <span *ngIf="!auth.loggedIn()">Hello :D</span>
+        <span *ngIf="auth.loggedIn()">
+          <a routerLink="/profile">Hello {{auth.token.user.username}}</a>
+        </span>
       </div>
       <div class="fs-header-right" fxFlex="grow" fxLayoutAlign="end center">
         <a href="https://steamcommunity.com/groups/Fankserver"><md-icon fontSet="fa" fontIcon="fa-steam"></md-icon></a>
@@ -24,7 +28,7 @@
         <li><a href="articles.html">Index of all articles</a></li>
         <li><a href="today.html">Things sheeple need to wake up for today</a></li>
         <li *ngIf="!auth.loggedIn()"><a routerLink="/login" routerLinkActive="active">Login</a></li>
-        <li *ngIf="auth.loggedIn()"><a routerLink="/login" routerLinkActive="active">Logout</a></li>
+        <li *ngIf="auth.loggedIn()"><a routerLink="/logout" routerLinkActive="active">Logout</a></li>
       </ul>
     </div>
   </nav>

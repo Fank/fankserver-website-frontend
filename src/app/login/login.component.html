@@ -1,9 +1,11 @@
-<form [formGroup]="loginForm" (ngSubmit)="doLogin($event)">
-  <md-input-container>
-    <input md-input placeholder="Username" formControlName="username">
-  </md-input-container>
-  <md-input-container>
-    <input md-input placeholder="Password" formControlName="password" type="password">
-  </md-input-container>
-  <button md-raised-button type="submit">Login</button>
-</form>
+<div fxLayoutAlign="space-around">
+  <form [formGroup]="loginForm" (ngSubmit)="doLogin($event)" fxFlex="50%" fxLayout="column" fxLayoutAlign="space-around">
+    <md-input-container>
+      <input md-input placeholder="Username" formControlName="username">
+    </md-input-container>
+    <md-input-container>
+      <input md-input placeholder="Password" formControlName="password" type="password">
+    </md-input-container>
+    <button md-raised-button type="submit">Login</button>
+  </form>
+</div>
