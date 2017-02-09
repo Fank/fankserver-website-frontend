@@ -1,11 +1,11 @@
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 import {NgModule, LOCALE_ID} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import { Http, HttpModule, RequestOptions } from '@angular/http';
 import {RouterModule} from '@angular/router';
 import {MaterialModule, MdIconRegistry} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {AuthModule} from 'angular2-jwt';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 import {AppComponent} from './app.component';
 import {IndexComponent} from './index/index.component';
@@ -15,8 +15,13 @@ import {LoginComponent} from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 
-export function asd() {
-  return localStorage.getItem('id_token');
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig({
+    headerPrefix: 'TOKA',
+    noJwtError: true,
+    tokenGetter: () => localStorage.getItem('id_token'),
+    globalHeaders: [{'Content-Type':'application/json'}],
+  }), http, options);
 }
 
 @NgModule({
@@ -33,16 +38,15 @@ export function asd() {
     HttpModule,
     RouterModule.forRoot(routes),
     MaterialModule.forRoot(),
-    FlexLayoutModule.forRoot(),
-    AuthModule.forRoot({
-      headerPrefix: 'TOKA',
-      noJwtError: true,
-      globalHeaders: [{'Accept': 'application/json'}],
-      tokenGetter: asd,
-    })
+    FlexLayoutModule.forRoot()
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'de-DE'},
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    },
     AuthService
   ],
   bootstrap: [AppComponent]
