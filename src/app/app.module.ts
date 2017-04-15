@@ -38,7 +38,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     HttpModule,
     RouterModule.forRoot(routes),
     MaterialModule.forRoot(),
-    FlexLayoutModule.forRoot()
+    FlexLayoutModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'de-DE'},
