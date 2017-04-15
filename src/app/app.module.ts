@@ -1,4 +1,5 @@
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule, LOCALE_ID} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import { Http, HttpModule, RequestOptions } from '@angular/http';
@@ -14,10 +15,10 @@ import {routes} from './app.routes';
 import {LoginComponent} from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RegisterComponent } from './register/register.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
-    headerPrefix: 'TOKA',
     noJwtError: true,
     tokenGetter: () => localStorage.getItem('id_token'),
     globalHeaders: [{'Content-Type':'application/json'}],
@@ -30,10 +31,12 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     IndexComponent,
     LoginComponent,
     LogoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(routes),

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Response} from '@angular/http';
+import {Response, Http} from '@angular/http';
 import {tokenNotExpired, AuthHttp, JwtHelper} from 'angular2-jwt';
 import {Observable, Subject} from 'rxjs';
 
@@ -8,15 +8,20 @@ const jwtHelper: JwtHelper = new JwtHelper();
 @Injectable()
 export class AuthService {
   public jwtExpiration: Subject<void> = new Subject<void>();
+  public loggedIn: boolean = false;
+  public decodedToken: any = null;
 
-  constructor(private authHttp: AuthHttp) { }
-
-  get token() {
-    return jwtHelper.decodeToken(localStorage.getItem('id_token'));
+  constructor(private authHttp: AuthHttp, private http: Http) {
+    this.checkLoggedIn();
   }
 
-  loggedIn() {
-    return tokenNotExpired();
+  checkLoggedIn() {
+    this.loggedIn = (localStorage.getItem('id_token') && tokenNotExpired('id_token'))
+    if (this.loggedIn) {
+      this.decodedToken = jwtHelper.decodeToken(localStorage.getItem('id_token'));
+    } else {
+      this.decodedToken = null;
+    }
   }
 
   setJWT(jwt: string) {
@@ -24,13 +29,17 @@ export class AuthService {
       localStorage.setItem('id_token', jwt);
       let expireDate = jwtHelper.getTokenExpirationDate(jwt);
       setTimeout(
-        () => this.jwtExpiration.next(),
+        () => {
+          this.checkLoggedIn();
+          this.jwtExpiration.next();
+        },
         (expireDate.valueOf() - (new Date().valueOf()) + 2000)
       );
     }
     else {
       localStorage.removeItem('id_token');
     }
+    this.checkLoggedIn();
   }
 
   // get(url: string, data: any) {
@@ -38,9 +47,17 @@ export class AuthService {
   // }
 
   post(url: string, body: Object): Observable<Response> {
-    return this.authHttp.post(
-      'http://localhost:8080' + url,
-      JSON.stringify(body)
-    );
+    if (this.loggedIn) {
+      return this.authHttp.post(
+        'http://localhost:8080' + url,
+        JSON.stringify(body)
+      );
+    } else {
+      return this.http.post(
+        'http://localhost:8080' + url,
+        JSON.stringify(body)
+      );
+    }
+
   }
 }
